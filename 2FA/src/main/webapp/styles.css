@@ -1,0 +1,111 @@
+/* Variables pour les couleurs */
+:root {
+    --primary-color: rgb(182, 157, 230);
+    --primary-color-hover: rgb(162, 137, 210);
+    --background-color: #f3f2f2;
+    --form-background-color: #ffffff;
+    --text-color: #333;
+    --label-color: #555;
+    --error-color: red;
+}
+
+body, html {
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", Helvetica, Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-color);
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    background: var(--form-background-color);
+    border-radius: 8px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.container img {
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 20px;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    font-size: 14px;
+    color: var(--label-color);
+    font-weight: 400;
+    margin-bottom: 5px;
+    display: block;
+    width: 100%;
+}
+
+form input {
+    font-size: 16px;
+    padding: 10px 15px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    color: var(--text-color);
+}
+
+form input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(182, 157, 230, 0.5);
+    outline: none;
+}
+
+form input[type="submit"] {
+    background-color: #3db921;
+    color: #cd492c;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+form input[type="submit"]:hover {
+    background-color:#e2f87f;
+    transform: translateY(-2px);
+}
+
+/* Error Message Styling */
+.error-message {
+    color: var(--error-color);
+    font-size: 14px;
+    margin-top: -15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
