@@ -30,9 +30,10 @@ public class LoginServlet extends HttpServlet {
             if (userDAO.validateCredentials(username, password)) {
                 String email = userDAO.getUserEmail(username);
                 String otp = OTPGenerator.generateOTP();
+                String emailSubject = "Your Verification Code";
 
                 request.getSession().setAttribute("authCode", otp);
-                MailSender.sendOTP(email, otp);
+                MailSender.sendOTP(email, otp, emailSubject);
 
                 RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
                 rd.forward(request, response);

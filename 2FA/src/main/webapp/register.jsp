@@ -14,13 +14,12 @@
             <div class="col-md-6 offset-md-3">
                 <!-- Page Title -->
                 <h2 class="text-center text-dark mt-5">Créer un Compte</h2>
-                <div class="text-center mb-5 text-dark">Made with Bootstrap</div>
                 <div class="card my-5 cardbody-color">
                     <!-- Registration Form -->
                     <form action="RegisterServlet" method="post" class="card-body cardbody-color p-lg-5">
                         <div class="text-center">
                             <!-- Profile Image -->
-                            <img src="images/ensias.jpg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                            <img src="./avatar.webp" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
                                 width="200" alt="profile">
                         </div>
                         <!-- Username Field -->

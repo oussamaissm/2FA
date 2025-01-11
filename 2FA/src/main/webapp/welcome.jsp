@@ -1,27 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Validation du Code</title>
-    <link rel="stylesheet" href="welcome_css.css"> <!-- Lien vers le fichier CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="validation-container">
-        <div class="header">
-            <img src="images/ensias.jpg" alt="Logo" class="logo">
-             <h3>Authentification Etape 2 </h3>
-             <h1>Veuillez verifier votre boite e-mail.</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h2 class="text-center text-dark mt-5">Validation du Code</h2>
+                <div class="card my-5 cardbody-color">
+                    <form action="ValidateCodeServlet" method="post" class="card-body cardbody-color p-lg-5">
+                        <div class="text-center">
+                            <img src="images/ensias.jpg" class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+                                width="200" alt="profile">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="code" name="code" 
+                                placeholder="Code � 6 chiffres" required>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-color px-5 mb-3 w-100">Valider</button>
+                        </div>
+                        <div class="text-danger text-center">${param.error}</div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <form action="ValidateCodeServlet" method="post" class="form">
-            <label for="code">Entrez le code de vérification :</label>
-            <input type="text" id="code" name="code" class="input" placeholder="Code à 6 chiffres" required>
-            <button type="submit" class="btn">Valider</button>
-        </form>
-        <c:if test="${not empty param.error}">
-            <p class="error-message">${param.error}</p>
-        </c:if>
     </div>
 </body>
 </html>

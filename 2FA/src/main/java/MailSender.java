@@ -13,10 +13,10 @@ public class MailSender {
     private static final String EMAIL_HOST = "smtp.gmail.com";
     private static final String EMAIL_PORT = "587";
 
-    public static void sendOTP(String recipientEmail, String otp) throws MessagingException {
-        String fromEmail = "smtp.noreply.smtp@gmail.com";
+    public static void sendOTP(String recipientEmail, String otp, String emailSubject) throws MessagingException {
+    	String fromEmail = "smtp.noreply.smtp@gmail.com";
         String emailPassword = "qbzj hzqx nigx ggye";
-        String emailSubject = "Your Verification Code";
+        //String emailSubject = "Your Verification Code";
         String emailBody = "Your verification code is: " + otp;
 
         Properties properties = new Properties();

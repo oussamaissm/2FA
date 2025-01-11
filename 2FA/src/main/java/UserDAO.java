@@ -43,4 +43,20 @@ public class UserDAO {
         }
         return null;
     }
+    
+    public boolean updatePassword(String email, String newPassword) throws SQLException {
+        String sql = "UPDATE users SET password_hash = ? WHERE contact_info = ?";
+
+        try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+        		PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, newPassword); // Set the new password
+            ps.setString(2, email); // Set the email to update
+            
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("Error updating password", e);
+        }
+    }
 }
