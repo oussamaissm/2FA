@@ -28,7 +28,6 @@ public class LoginServlet extends HttpServlet {
         try {
         	
             if (userDAO.validateCredentials(username, SHA256Hasher.hashPassword(password))) {
-            	System.out.print("this is the hashed password " + SHA256Hasher.hashPassword(password));
                 String email = userDAO.getUserEmail(username);
                 String otp = OTPGenerator.generateOTP();
                 String emailSubject = "Your Verification Code";
