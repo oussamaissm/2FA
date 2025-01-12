@@ -27,7 +27,7 @@ public class ResetPasswordServlet extends HttpServlet {
         // Update the password in the database
         UserDAO userDAO = new UserDAO();
         try {
-            if (userDAO.updatePassword(resetEmail, newPassword)) {
+            if (userDAO.updatePassword(resetEmail, SHA256Hasher.hashPassword(newPassword))) {
                 // Clear session data
                 request.getSession().removeAttribute("resetEmail");
                 request.getSession().removeAttribute("resetOtp");

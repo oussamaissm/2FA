@@ -34,7 +34,7 @@ public class RegisterServlet extends HttpServlet {
                  PreparedStatement ps = con.prepareStatement("INSERT INTO users (username, password_hash, contact_info) VALUES (?, ?, ?)")) {
 
                 ps.setString(1, username);
-                ps.setString(2, password); // Store the password directly (hashing recommended for production)
+                ps.setString(2, SHA256Hasher.hashPassword(password)); // Store the password directly (hashing recommended for production)
                 ps.setString(3, email);
 
                 int result = ps.executeUpdate();

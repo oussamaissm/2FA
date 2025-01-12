@@ -18,16 +18,17 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("txtName").trim();
         String password = request.getParameter("txtPwd").trim();
-
+        UserDAO userDAO = new UserDAO();
         if (username.isEmpty() || password.isEmpty()) {
             redirectToLoginWithError(request, response, "Please enter both username and password.");
             return;
         }
 
-        UserDAO userDAO = new UserDAO();
+        
         try {
         	
-            if (userDAO.validateCredentials(username, password)) {
+            if (userDAO.validateCredentials(username, SHA256Hasher.hashPassword(password))) {
+            	System.out.print("this is the hashed password " + SHA256Hasher.hashPassword(password));
                 String email = userDAO.getUserEmail(username);
                 String otp = OTPGenerator.generateOTP();
                 String emailSubject = "Your Verification Code";
