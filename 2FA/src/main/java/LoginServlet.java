@@ -34,8 +34,7 @@ public class LoginServlet extends HttpServlet {
 
                 request.getSession().setAttribute("authCode", otp);
                 MailSender.sendOTP(email, otp, emailSubject);
-
-                RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("otp.jsp");
                 rd.forward(request, response);
             } else {
                 redirectToLoginWithError(request, response, "Invalid username or password.");

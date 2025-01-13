@@ -1,20 +1,33 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Succès</title>
-    <link rel="stylesheet" href="succes_css.css"> <!-- Lien vers le fichier CSS -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Succès</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="succes_css.css">
+<!-- Lien vers le fichier CSS -->
 </head>
 <body>
-    <div class="success-container">
-        <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" height="64" width="64" fill="#4CAF50" viewBox="0 0 24 24">
-                <path d="M12 0a12 12 0 1 1-8.485 3.515A12 12 0 0 1 12 0zm-1.313 16.97l-5.656-5.656 1.414-1.414 4.243 4.243 8.485-8.485 1.414 1.414z"/>
-            </svg>
-        </div>
-        <h2>Succès !</h2>
-        <p>Vous etes correctement identifiés.</p>
-    </div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 offset-md-3">
+				<div class="card my-5 cardbody-color">
+					<div class="card-body cardbody-color p-lg-5">
+						<div class="text-center">
+							<img
+								src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+								class="img-fluid profile-image-pic img-thumbnail rounded-circle my-3"
+								width="200px" alt="profile">
+						</div>
+						
+						<h2 class="text-center text-dark">Succès !</h2>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
