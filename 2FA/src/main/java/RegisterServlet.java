@@ -1,3 +1,4 @@
+
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,9 +20,10 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
+        String confirmPassword = request.getParameter("confirmPassword").trim();
         String email = request.getParameter("email").trim();
 
-        if (username.isEmpty() || password.isEmpty() || email.isEmpty()) {
+        if ((username.isEmpty() || password.isEmpty() || email.isEmpty()) || !password.equals(confirmPassword)) {
             request.setAttribute("error", "All fields are required.");
             RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
             rd.forward(request, response);
