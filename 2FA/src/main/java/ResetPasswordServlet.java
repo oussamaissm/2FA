@@ -25,16 +25,12 @@ public class ResetPasswordServlet extends HttpServlet {
             return;
         }
 
-        // Update the password in the database
         UserDAO userDAO = new UserDAO();
         try {
             if (userDAO.updatePassword(resetEmail, SHA256Hasher.hashPassword(newPassword))) {
-                // Clear session data
                 request.getSession().removeAttribute("resetEmail");
                 request.getSession().removeAttribute("resetOtp");
-                request.getSession().removeAttribute("otpExpiry");
 
-                // Success message and redirect to login page
                 request.setAttribute("success", "Password successfully updated. You can now log in.");
                 RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                 rd.forward(request, response);

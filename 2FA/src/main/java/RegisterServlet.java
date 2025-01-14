@@ -31,17 +31,16 @@ public class RegisterServlet extends HttpServlet {
         }
 
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver"); // Ensure JDBC driver is loaded
+            Class.forName("com.mysql.cj.jdbc.Driver"); 
             try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/auth_system", "root", "ismaili");
                  PreparedStatement ps = con.prepareStatement("INSERT INTO users (username, password_hash, contact_info) VALUES (?, ?, ?)")) {
 
                 ps.setString(1, username);
-                ps.setString(2, SHA256Hasher.hashPassword(password)); // Store the password directly (hashing recommended for production)
+                ps.setString(2, SHA256Hasher.hashPassword(password)); 
                 ps.setString(3, email);
 
                 int result = ps.executeUpdate();
                 if (result > 0) {
-                    // Registration successful, redirect to login page
                     request.setAttribute("message", "Registration successful! Please log in.");
                     RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
                     rd.forward(request, response);

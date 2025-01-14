@@ -13,7 +13,6 @@ public class UserDAO {
 
     public UserDAO() {
         try {
-            // Ensure the JDBC driver is loaded
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Failed to load JDBC driver: " + e.getMessage(), e);
@@ -50,8 +49,8 @@ public class UserDAO {
 
         try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
         		PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setString(1, newPassword); // Set the new password
-            ps.setString(2, email); // Set the email to update
+            ps.setString(1, newPassword); 
+            ps.setString(2, email); 
             
             int rowsUpdated = ps.executeUpdate();
             return rowsUpdated > 0;

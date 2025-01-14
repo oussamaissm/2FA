@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.Duration;
+import java.time.Instant;
 
 @WebServlet("/ValidateOtpServlet")
 public class ValidateOtpServlet extends HttpServlet {
@@ -16,19 +18,19 @@ public class ValidateOtpServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userOtp = request.getParameter("otp").trim();
         String sessionOtp = (String) request.getSession().getAttribute("resetOtp");
-        Long otpExpiry = (Long) request.getSession().getAttribute("otpExpiry");
+        Instant sessionOtpTimestamp = (Instant) request.getSession().getAttribute("authCodeTimestamp");
 
-        if (sessionOtp == null || otpExpiry == null) {
+        if (sessionOtp == null) {
             request.setAttribute("error", "OTP not found. Please request a new one.");
             RequestDispatcher rd = request.getRequestDispatcher("otpEntry.jsp");
             rd.forward(request, response);
             return;
         }
 
-        // Check if OTP has expired
-        if (System.currentTimeMillis() > otpExpiry) {
-            request.setAttribute("error", "OTP has expired. Please request a new one.");
-            RequestDispatcher rd = request.getRequestDispatcher("otpEntry.jsp");
+        Instant now = Instant.now();
+        if (Duration.between(sessionOtpTimestamp, now).toMinutes() > 5) {
+        	request.setAttribute("error", "OTP a expiré.");
+            RequestDispatcher rd = request.getRequestDispatcher("forgotPassword.jsp");
             rd.forward(request, response);
             return;
         }

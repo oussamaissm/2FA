@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Instant;
 
 import javax.mail.MessagingException;
 
@@ -31,9 +32,10 @@ public class LoginServlet extends HttpServlet {
             if (userDAO.validateCredentials(username, SHA256Hasher.hashPassword(password))) {
                 String email = userDAO.getUserEmail(username);
                 String otp = OTPGenerator.generateOTP();
-                String emailSubject = "Your Verification Code";
+                String emailSubject = "Ce code de vérification va expirer pendant 5 min";
 
                 request.getSession().setAttribute("authCode", otp);
+                request.getSession().setAttribute("authCodeTimestamp", Instant.now());
                 MailSender.sendOTP(email, otp, emailSubject);
                 RequestDispatcher rd = request.getRequestDispatcher("otp.jsp");
                 rd.forward(request, response);

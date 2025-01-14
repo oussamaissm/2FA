@@ -17,7 +17,6 @@ public class MailSender {
     public static void sendOTP(String recipientEmail, String otp, String emailSubject) throws MessagingException {
     	String fromEmail = "smtp.noreply.smtp@gmail.com";
         String emailPassword = "qbzj hzqx nigx ggye";
-        //String emailSubject = "Your Verification Code";
         String emailBody = "Your verification code is: " + otp;
 
         Properties properties = new Properties();
