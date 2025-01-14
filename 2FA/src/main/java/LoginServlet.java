@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
             redirectToLoginWithError(request, response, "Please enter both username and password.");
             return;
         }
-
+ 
         
         try {
         	

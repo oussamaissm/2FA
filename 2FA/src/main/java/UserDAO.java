@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import jakarta.servlet.RequestDispatcher;
+
 public class UserDAO {
 
     private static final String DB_URL = "jdbc:mysql://localhost:3306/auth_system";
@@ -28,6 +30,21 @@ public class UserDAO {
                 return rs.next() && password.equals(rs.getString("password_hash"));
             }
         }
+    }
+    
+    public boolean createUser(String username, String password, String email) throws SQLException {
+    	String query = "INSERT INTO users (username, password_hash, contact_info) VALUES (?, ?, ?)";
+    	try (Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/auth_system", "root", "ismaili");
+                PreparedStatement ps = con.prepareStatement(query)) {
+
+               ps.setString(1, username);
+               ps.setString(2, SHA256Hasher.hashPassword(password)); 
+               ps.setString(3, email);
+
+               int result = ps.executeUpdate();
+               return result > 0;
+               
+           }
     }
 
     public String getUserEmail(String username) throws SQLException {
